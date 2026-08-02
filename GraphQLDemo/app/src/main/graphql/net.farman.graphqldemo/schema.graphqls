@@ -61,3 +61,18 @@ type Film {
     director: String
     openingCrawl: String
 }
+
+#A mutation in GraphQL is a specific type of operation used to modify server-side data, such as creating, updating, or deleting records.
+# Queries follow a request-response pattern and Mutations follow a write-then-respond pattern, Subscriptions use a push model. When an event occurs on the server, the server automatically pushes the updated data to the client.
+type Mutation {
+    # Accepts an input payload and returns the newly created Post object
+    createPost(title: String!, content: String!): Post!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+}
+
+## difference between type and input? type is Output: Server → Client. Input: Client → Server
