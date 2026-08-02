@@ -1,0 +1,10 @@
+query StarWarsFilmsList($first: Int, $after: String) {
+    allFilms(first: $first, after: $after) {
+        films {
+            id
+            title
+            episodeID
+            releaseDate
+        }
+    }
+}

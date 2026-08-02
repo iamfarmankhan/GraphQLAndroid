@@ -1,0 +1,63 @@
+type Query {
+    countries(filter: CountryFilterInput = {
+
+    }
+    ): [Country!]!
+    allFilms(after: String, first: Int, before: String, last: Int): FilmsConnection
+    film(id: ID, filmID: ID): Film
+}
+
+
+type Country {
+    code: ID!
+    name:String
+    capital:String
+    currency:String
+    emoji:String
+    continent : Continent
+}
+
+type Continent{
+    code: ID!
+    name:String
+}
+
+
+input CountryFilterInput {
+    code: StringQueryOperatorInput
+
+    continent: StringQueryOperatorInput
+
+    currency: StringQueryOperatorInput
+
+    name: StringQueryOperatorInput
+}
+## in : will only find data where the value matches "IN" exactly (case-sensitive)
+## ne : Matches everything except the provided string.{ ne: "US" } will return every country in the database except for the United States.
+##  in: [String!] Matches any value that exists inside the list of strings you provide. It works like an "OR" condition.{ in: ["USD", "EUR", "JPY"] } will return any country whose currency is either USD, EUR, or JPY.
+## nin : Excludes any values that exist inside the list of strings you provide. { nin: ["CA", "MX"] } will return every country except Canada and Mexico.
+## regex : Matches text based on a search pattern or partial string wildcard rather than an exact match. { regex: "^United" } will find any country whose name starts with the word "United" (e.g., United Kingdom, United States, United Arab Emirates).
+input StringQueryOperatorInput {
+    eq: String
+
+    in: [String!]
+
+    ne: String
+
+    nin: [String!]
+
+    regex: String
+}
+
+type FilmsConnection {
+    films: [Film]
+}
+
+type Film {
+    id: ID!
+    title: String
+    episodeID: Int
+    releaseDate: String
+    director: String
+    openingCrawl: String
+}
