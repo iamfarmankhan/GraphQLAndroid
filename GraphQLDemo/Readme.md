@@ -14,12 +14,13 @@
 
 ## When you execute a query or mutation and need access to HTTP-specific data like status codes or network headers, access the execution context directly from the returned ApolloResponse using the HttpInfo key:
 
-val response = apolloClient.query(MyQuery()).execute()
+
 
 ```
+val response = apolloClient.query(MyQuery()).execute()
 val httpInfo = response.executionContext[HttpInfo]
 val statusCode = httpInfo?.statusCode // e.g., 200
 val contentType = httpInfo?.headers?.firstOrNull { it.name == "Content-Type" }?.value
 ```
 
-## you can define scheme in in JSON instead of .graphqs but it is verbose,lengthy and complex
+## you can define scheme in in JSON instead of .graphqls but it is verbose,lengthy and complex
