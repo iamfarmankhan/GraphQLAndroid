@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import net.farman.graphqldemo.CreatePostMutation
 import net.farman.graphqldemo.GetCountriesQuery
 import net.farman.graphqldemo.appoloclient.apolloClient
 import net.farman.graphqldemo.type.CountryFilterInput
@@ -128,6 +129,11 @@ class CountryListViewModel : ViewModel() {
 
     fun fetchAllCountries(){
         fetchCountries(GetCountriesQuery())
+    }
+
+    // these are dummy
+    suspend fun createPost(){
+        val response = apolloClient.mutation(CreatePostMutation("My First POST","This is just an example. No End point to tes for now")).execute()
     }
 
 
